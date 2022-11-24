@@ -7,6 +7,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 
@@ -14,7 +15,7 @@ body{
     width: 300px;
     height: 300px;
     display: grid;
-    margin-top: 200px;
+    margin-top: 50px;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
@@ -24,4 +25,11 @@ body{
     align-items: center;
     justify-content: center;
     border: 1px solid;
+}
+
+#winner{
+    border: 1px solid;
+    width: 300px;
+    height: 100px;
+    margin-top: 50px;
 }
