@@ -3,11 +3,9 @@ const gameBoard = (function() {
     player1 = {} //factory function needed for both players
     player2 = {}
 
-   
-    
-
     function createGame(){
         let counter = 0
+        
         const gameContent = document.getElementById("container")
         for(let i = 0; i < gameBoardObj.gameboard.length; i++){
             let content = document.createElement("div")
@@ -22,32 +20,50 @@ const gameBoard = (function() {
                     content.innerText = "x"
                     counter++
                     checkWin()
+                    //somehow the if statement below works
+                    if(score.innerText == "x wins"){
+                        gameContent.innerText = ""
+                        gameBoardObj.gameboard = ["","","","","","","","",""]
+                        createGame()
+                    }
+                    
+                    //reset logic needed
                 }else if(counter % 2 == 1 && gameBoardObj.gameboard[i] == ""){
                     content.innerText = "o"
                     gameBoardObj.gameboard[i] = "o"
                     counter++
                     checkWin()
+                    if(score.innerText == "o wins"){
+                        gameContent.innerText = ""
+                        gameBoardObj.gameboard = ["","","","","","","","",""]
+                        createGame()
+                    }
+                    //reset logic needed
                 }if(counter == 9){
                     console.log(gameBoardObj)
                     checkWin()
+
+                    //how does this if work if every time there is draw in the inner text but it doesn't reset the grid until it is filled up
+                    //this does not work
+                    if(score.innerText == "draw"){
+                        gameContent.innerText = ""
+                        gameBoardObj.gameboard = ["","","","","","","","",""]
+                        createGame()
+                    }
+                    //reset logic needed
                 }
             })
-
-
-  
-
-
         }
-
         }
 
         function checkWin(){
             let winner = document.getElementById('winner')
-            let score = document.createElement("p")
+            let score = document.getElementById('score')
+            
+        
             winner.appendChild(score)
                 if(gameBoardObj.gameboard[0] == "x" && gameBoardObj.gameboard[1] == "x" && gameBoardObj.gameboard[2] == "x"){
-                    score.innerText = "x wins"
-                    
+                    score.innerText = "x wins"                    
                 }else if(gameBoardObj.gameboard[3] == "x" && gameBoardObj.gameboard[4] == "x" && gameBoardObj.gameboard[5] == "x"){
                     score.innerText = "x wins"
                 }else if(gameBoardObj.gameboard[6] == "x" && gameBoardObj.gameboard[7] == "x" && gameBoardObj.gameboard[8] == "x"){
@@ -81,11 +97,9 @@ const gameBoard = (function() {
                 }else if(gameBoardObj.gameboard[2] == "o" && gameBoardObj.gameboard[4] == "o" && gameBoardObj.gameboard[6] == "o"){
                     score.innerText = "o wins"
                 }else{
-                    console.log("draw")
+                    score.innerText = "Draw"
                 }
             }
-           
-
     createGame()
     
 
