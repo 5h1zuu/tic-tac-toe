@@ -7,6 +7,8 @@ const gameBoard = (function() {
         let counter = 0
         
         const gameContent = document.getElementById("container")
+        const start = document.getElementById('start')
+        const reset = document.getElementById('reset')
         for(let i = 0; i < gameBoardObj.gameboard.length; i++){
             let content = document.createElement("div")
             content.innerText = gameBoardObj.gameboard[i]
@@ -14,32 +16,45 @@ const gameBoard = (function() {
             content.style.height = "100px"
             content.classList.add("square")
             gameContent.append(content) 
-            content.addEventListener("click", () =>{
-                if(counter % 2 == 0 && gameBoardObj.gameboard[i] == ""){
-                    gameBoardObj.gameboard[i] = "x"
-                    content.innerText = "x"
-                    counter++
-                    checkWin()
-                    if(score.innerText == "x wins"){
-                        gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
-                    }
-                }else if(counter % 2 == 1 && gameBoardObj.gameboard[i] == ""){
-                    content.innerText = "o"
-                    gameBoardObj.gameboard[i] = "o"
-                    counter++
-                    checkWin()
-                    if(score.innerText == "o wins"){
-                        gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
-                    }
-                }if(counter == 9){
-                    gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
-                    checkWin()
-                    if(score.innerText != "x wins" || score.innerText != "o wins" && gameBoardObj.gameboard == ["i","i","i","i","i","i","i","i","i"]){
-                        score.innerText = "draw" 
-                    }
-                }
+
+            start.addEventListener("click", game())
+            reset.addEventListener("click", () =>{
+                gameContent.innerText = ""
+                score.innerText = ""
+                gameBoardObj.gameboard = ["","","","","","","","",""]
+                createGame()
             })
-        }
+
+
+
+            function game(){
+                content.addEventListener("click", () =>{
+                    if(counter % 2 == 0 && gameBoardObj.gameboard[i] == ""){
+                        gameBoardObj.gameboard[i] = "x"
+                        content.innerText = "x"
+                        counter++
+                        checkWin()
+                        if(score.innerText == "x wins"){
+                            gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        }
+                    }else if(counter % 2 == 1 && gameBoardObj.gameboard[i] == ""){
+                        content.innerText = "o"
+                        gameBoardObj.gameboard[i] = "o"
+                        counter++
+                        checkWin()
+                        if(score.innerText == "o wins"){
+                            gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        }
+                    }if(counter == 9){
+                        gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        checkWin()
+                        if(score.innerText != "x wins" || score.innerText != "o wins" && gameBoardObj.gameboard == ["i","i","i","i","i","i","i","i","i"]){
+                            score.innerText = "draw" 
+                        }
+                    }
+                })
+            }
+            }
         }
 
         function checkWin(){
