@@ -3,9 +3,10 @@ const gameBoard = (function() {
     player1 = {} //factory function needed for both players
     player2 = {}
 
+    
+
     function createGame(){
         let counter = 0
-        
         const gameContent = document.getElementById("container")
         const start = document.getElementById('start')
         const reset = document.getElementById('reset')
@@ -17,12 +18,13 @@ const gameBoard = (function() {
             content.classList.add("square")
             gameContent.append(content) 
 
-            start.addEventListener("click", game())
+            start.addEventListener("click", game)
             reset.addEventListener("click", () =>{
                 gameContent.innerText = ""
                 score.innerText = ""
                 gameBoardObj.gameboard = ["","","","","","","","",""]
                 createGame()
+                
             })
 
 
@@ -45,7 +47,8 @@ const gameBoard = (function() {
                         if(score.innerText == "o wins"){
                             gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
                         }
-                    }if(counter == 9){
+                        //problem with below code saying draw when a person wins
+                    }else{
                         gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
                         checkWin()
                         if(score.innerText != "x wins" || score.innerText != "o wins" && gameBoardObj.gameboard == ["i","i","i","i","i","i","i","i","i"]){
@@ -124,4 +127,4 @@ const gameBoard = (function() {
 
 */
 
-
+// create input for player name and piece choice
