@@ -36,3 +36,17 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+.button-container{
+    display: flex;
+    height: 100px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+button{
+    height: 30px;
+    width: 100px;
+}
