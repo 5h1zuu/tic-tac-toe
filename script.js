@@ -30,30 +30,32 @@ const gameBoard = (function() {
 
 
             function game(){
+                score.innerText = "Player X's turn"
                 content.addEventListener("click", () =>{
                     if(counter % 2 == 0 && gameBoardObj.gameboard[i] == ""){
                         gameBoardObj.gameboard[i] = "x"
                         content.innerText = "x"
                         counter++
+                        score.innerText = "Player O's turn"
                         checkWin()
                         if(score.innerText == "x wins"){
                             gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        }else if(counter == 9 && score.innerText != "x wins"){
+                            score.innerText = "Draw"
                         }
+
                     }else if(counter % 2 == 1 && gameBoardObj.gameboard[i] == ""){
                         content.innerText = "o"
                         gameBoardObj.gameboard[i] = "o"
                         counter++
+                        score.innerText = "Player X's turn"
                         checkWin()
                         if(score.innerText == "o wins"){
                             gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        }else if(counter == 9 && score.innerText != "o wins"){
+                            score.innerText = "Draw"
                         }
-                        //problem with below code saying draw when a person wins
-                    }else{
-                        gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
-                        checkWin()
-                        if(score.innerText != "x wins" || score.innerText != "o wins" && gameBoardObj.gameboard == ["i","i","i","i","i","i","i","i","i"]){
-                            score.innerText = "draw" 
-                        }
+                        
                     }
                 })
             }
@@ -100,8 +102,6 @@ const gameBoard = (function() {
                     score.innerText = "o wins"
                 }else if(gameBoardObj.gameboard[2] == "o" && gameBoardObj.gameboard[4] == "o" && gameBoardObj.gameboard[6] == "o"){
                     score.innerText = "o wins"
-                }else{
-                    score.innerText = "waiting for result"
                 }
                 
                 
@@ -127,4 +127,15 @@ const gameBoard = (function() {
 
 */
 
+
+/*else{
+                        //fix draw
+                        gameBoardObj.gameboard = ["i","i","i","i","i","i","i","i","i"]
+                        checkWin()
+                        if(score.innerText != "x wins" || score.innerText != "o wins" && gameBoardObj.gameboard == ["i","i","i","i","i","i","i","i","i"]){
+                            score.innerText = "draw" 
+                        }
+                    }*/
+
 // create input for player name and piece choice
+
